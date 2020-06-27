@@ -6,12 +6,20 @@ class Employee {
 		this.id = id;
 		this.email = email;
 
-		this.getName = function () {};
+		this.getName = function () {
+			return this.name;
+		};
 
-		this.getId = function () {};
+		this.getId = function () {
+			return this.id;
+		};
 
-		this.getEmail = function () {};
+		this.getEmail = function () {
+			return this.email;
+		};
 
-		this.getRole = function () {}; // Returns 'Employee' */
+		this.getRole = function () {
+			return new Employee();
+		};
 	}
 }
