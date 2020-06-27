@@ -19,7 +19,9 @@ class Employee {
 		};
 
 		this.getRole = function () {
-			return new Employee();
+			return new Employee(this.name, this.id, this.email);
 		};
 	}
 }
+
+module.exports = Employee;
