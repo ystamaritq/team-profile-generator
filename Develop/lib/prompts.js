@@ -24,6 +24,19 @@ const managerQuestions = [
 		message: "Enter the manager's office number:",
 		name: "officeNumber",
 	},
+	{
+		type: "confirm",
+		name: "employee",
+		message: "want to add employee?:",
+		default: true,
+		when: (answers) => {
+			if (true) {
+				return promptTeamMembersAsync;
+			} else {
+				return;
+			}
+		},
+	},
 ];
 
 const teamMembersQuestions = [
@@ -56,17 +69,37 @@ const teamMembersQuestions = [
 	},
 ];
 
-const promptEngineer = {
-	type: "input",
-	message: "Enter your github username: ",
-	name: "isEngineer",
-};
+const promptEngineer = [
+	{
+		type: "input",
+		message: "Enter your github username: ",
+		name: "isEngineer",
+	},
+	{
+		type: "confirm",
+		name: "add",
+		message: "want to add other employee?:",
+		when: (answers) => {
+			return addMore;
+		},
+	},
+];
 
-const promptIntern = {
-	type: "input",
-	message: "Enter your school: ",
-	name: "isIntern",
-};
+const promptIntern = [
+	{
+		type: "input",
+		message: "Enter your school: ",
+		name: "isIntern",
+	},
+	{
+		type: "confirm",
+		name: "add",
+		message: "want to add other employee?:",
+		when: (answers) => {
+			return addMore;
+		},
+	},
+];
 
 function displayNext(role) {
 	if (role === "Engineer") {
@@ -101,10 +134,15 @@ function promptInternAsync() {
 	return inquirer.prompt(promptIntern);
 }
 
+function addMore() {
+	return promptTeamMembersAsync;
+}
+
 module.exports = {
 	promptManagerAsync: promptManagerAsync,
 	promptTeamMembersAsync: promptTeamMembersAsync,
 	promptEngineerAsync: promptEngineerAsync,
 	promptInternAsync: promptInternAsync,
 	displayNext: displayNext,
+	addMore: addMore,
 };

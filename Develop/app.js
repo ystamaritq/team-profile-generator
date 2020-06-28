@@ -11,7 +11,7 @@ const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
-const { promptTeamMembersAsync } = require("./lib/prompts");
+const { promptTeamMembersAsync, promptManagerAsync } = require("./lib/prompts");
 
 const outputHtml = render([]);
 
@@ -20,8 +20,10 @@ const outputHtml = render([]);
 
 async function init() {
 	try {
+		await promptManagerAsync();
 		const { role } = await promptTeamMembersAsync();
 		prompts.displayNext(role);
+		prompts.addMore();
 	} catch (err) {
 		return console.log(err);
 	}
