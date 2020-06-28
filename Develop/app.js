@@ -5,6 +5,7 @@ const inquirer = require("inquirer");
 const path = require("path");
 const fs = require("fs");
 const { validateOutputDir, writeOutputFile } = require("./lib/Utils");
+const promptManagerAsync = require("./lib/prompts");
 
 const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
@@ -13,8 +14,18 @@ const render = require("./lib/htmlRenderer");
 
 const outputHtml = render([]);
 
-validateDirectoriesAndFiles(OUTPUT_DIR, outputPath);
-writeOutputFile(outputPath, outputHtml);
+// validateDirectoriesAndFiles(OUTPUT_DIR, outputPath);
+// writeOutputFile(outputPath, outputHtml);
+
+async function init() {
+	try {
+		const managerData = await promptManagerAsync();
+	} catch (error) {
+		return handleError(err);
+	}
+}
+
+init();
 
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
