@@ -26,7 +26,55 @@ const managerQuestions = [
 	},
 ];
 
-const teamMembersQuestions = [{}];
+const teamMembersQuestions = [
+	{
+		type: "input",
+		message: "Enter the team member's name: ",
+		name: "name",
+		validate: validateNonEmpty,
+	},
+	{
+		type: "number",
+		name: "id",
+		message: "Enter team member's ID: ",
+		validate: validateNonEmpty,
+	},
+	{
+		type: "input",
+		name: "email",
+		message: "Enter team member's email:",
+		validate: validateEmail,
+	},
+	{
+		type: "list",
+		message: "Select the team member's role",
+		name: "role",
+		choices: ["Engineer", "Intern"],
+		when: (role) => {
+			return displayNext;
+		},
+	},
+];
+
+const promptEngineer = {
+	type: "input",
+	message: "Enter your github username: ",
+	name: "isEngineer",
+};
+
+const promptIntern = {
+	type: "input",
+	message: "Enter your school: ",
+	name: "isIntern",
+};
+
+function displayNext(role) {
+	if (role === "Engineer") {
+		return promptEngineerAsync();
+	} else {
+		return promptInternAsync();
+	}
+}
 
 function validateNonEmpty(input) {
 	return !input || input === "" ? "Invalid input" : true;
@@ -44,7 +92,19 @@ function promptManagerAsync() {
 function promptTeamMembersAsync() {
 	return inquirer.prompt(teamMembersQuestions);
 }
+
+function promptEngineerAsync() {
+	return inquirer.prompt(promptEngineer);
+}
+
+function promptInternAsync() {
+	return inquirer.prompt(promptIntern);
+}
+
 module.exports = {
 	promptManagerAsync: promptManagerAsync,
 	promptTeamMembersAsync: promptTeamMembersAsync,
+	promptEngineerAsync: promptEngineerAsync,
+	promptInternAsync: promptInternAsync,
+	displayNext: displayNext,
 };
