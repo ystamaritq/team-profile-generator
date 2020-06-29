@@ -15,7 +15,4 @@ class Manager extends Employee {
 	}
 }
 
-const m = new Manager(60);
-console.log(m);
-
 module.exports = Manager;

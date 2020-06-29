@@ -19,4 +19,5 @@ const writeOutputFile = (outputPath, data) => {
 module.exports = {
 	validateOutputDir: validateOutputDir,
 	writeOutputFile: writeOutputFile,
+	handleError: handleError,
 };
