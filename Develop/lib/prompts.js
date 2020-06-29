@@ -1,113 +1,166 @@
 const inquirer = require("inquirer");
+const Manager = require("./Manager");
+const Engineer = require("./Engineer");
+const Intern = require("./Intern");
+
+// START - Questions
+
+const employeeQuestions = [
+	{
+		type: "input",
+		message: "Enter employee's name: ",
+		name: "name",
+		validate: validateNonEmpty,
+	},
+	{
+		type: "input",
+		name: "id",
+		message: "Enter employee's ID: ",
+		validate: validateNonEmpty,
+	},
+	{
+		type: "input",
+		name: "email",
+		message: "Enter employee's email:",
+		validate: validateEmail,
+	},
+];
 
 const managerQuestions = [
 	{
 		type: "input",
-		message: "Enter manager's name: ",
-		name: "name",
-		validate: validateNonEmpty,
-	},
-	{
-		type: "number",
-		name: "id",
-		message: "Enter manager's ID: ",
-		validate: validateNonEmpty,
-	},
-	{
-		type: "input",
-		name: "email",
-		message: "Enter manager's email:",
-		validate: validateEmail,
-	},
-	{
-		type: "number",
 		message: "Enter the manager's office number:",
 		name: "officeNumber",
-	},
-	{
-		type: "confirm",
-		name: "employee",
-		message: "want to add employee?:",
-		default: true,
-		when: (answers) => {
-			if (true) {
-				return promptTeamMembersAsync;
-			} else {
-				return;
-			}
-		},
+		validate: validateNonEmpty,
 	},
 ];
 
-const teamMembersQuestions = [
+const addEmployeeQuestions = [
 	{
-		type: "input",
-		message: "Enter the team member's name: ",
-		name: "name",
-		validate: validateNonEmpty,
+		type: "confirm",
+		name: "addEmployee",
+		message: "want to add employee?:",
+		default: true,
 	},
-	{
-		type: "number",
-		name: "id",
-		message: "Enter team member's ID: ",
-		validate: validateNonEmpty,
-	},
-	{
-		type: "input",
-		name: "email",
-		message: "Enter team member's email:",
-		validate: validateEmail,
-	},
+];
+
+const roleQuestions = [
 	{
 		type: "list",
 		message: "Select the team member's role",
 		name: "role",
 		choices: ["Engineer", "Intern"],
-		when: (role) => {
-			return displayNext;
-		},
 	},
 ];
 
-const promptEngineer = [
+const engineerQuestions = [
 	{
 		type: "input",
 		message: "Enter your github username: ",
-		name: "isEngineer",
-	},
-	{
-		type: "confirm",
-		name: "add",
-		message: "want to add other employee?:",
-		when: (answers) => {
-			return addMore;
-		},
+		name: "github",
 	},
 ];
 
-const promptIntern = [
+const internQuestions = [
 	{
 		type: "input",
 		message: "Enter your school: ",
-		name: "isIntern",
-	},
-	{
-		type: "confirm",
-		name: "add",
-		message: "want to add other employee?:",
-		when: (answers) => {
-			return addMore;
-		},
+		name: "school",
 	},
 ];
 
-function displayNext(role) {
+// END - Questions
+
+// START - Promts
+
+async function getManagerAsync() {
+	console.log("Enter Manager's Info");
+	const employeeAnswers = await inquirer.prompt(employeeQuestions);
+	const managerAnswers = await inquirer.prompt(managerQuestions);
+	return new Manager(
+		employeeAnswers.name,
+		employeeAnswers.id,
+		employeeAnswers.email,
+		managerAnswers.officeNumber
+	);
+}
+
+async function getEngineerAsync() {
+	console.log("Enter Engineer's Info");
+	const employeeAnswers = await inquirer.prompt(employeeQuestions);
+	const engineerAnswers = await inquirer.prompt(engineerQuestions);
+	return new Engineer(
+		employeeAnswers.name,
+		employeeAnswers.id,
+		employeeAnswers.email,
+		engineerAnswers.github
+	);
+}
+
+async function getInternAsync() {
+	console.log("Enter Interns's Info");
+	const employeeAnswers = await inquirer.prompt(employeeQuestions);
+	const internAnswers = await inquirer.prompt(internQuestions);
+	return new Intern(
+		employeeAnswers.name,
+		employeeAnswers.id,
+		employeeAnswers.email,
+		internAnswers.school
+	);
+}
+
+async function getEmployeeRole() {
+	const answers = await inquirer.prompt(roleQuestions);
+	return answers.role;
+}
+
+async function wantToAddEmployeeAsync() {
+	const answers = await inquirer.prompt(addEmployeeQuestions);
+	return answers.addEmployee;
+}
+
+function getTeamMember(role) {
 	if (role === "Engineer") {
-		return promptEngineerAsync();
+		return getEngineerAsync();
+	} else if (role == "Intern") {
+		return getInternAsync();
 	} else {
-		return promptInternAsync();
+		throw new Error("Invalid role");
 	}
 }
+
+/**
+ * Prompts user for team members.
+ * Logic:
+ * 1. get the manager
+ * 	1.1 add manager to team array
+ * 2. ask the user if they want to add team member
+ * 3. if yes, ask for team member details
+ * 	3.1 ask role
+ * 			3.1.1 if engineer, ask engineer questions
+ *	 		3.1.2 if intern, ask intern questions
+ *			3.1.3 otherwise, throw an error
+ * 	3.2 add employee to team array
+ * 	3.3 go to 2 and repeat
+ * 4. otherwise, stop asking questions
+ */
+async function getTeam() {
+	const team = [];
+	const manager = await getManagerAsync();
+	team.push(manager);
+	var addTeamMember = await wantToAddEmployeeAsync();
+	while (addTeamMember) {
+		const role = await getEmployeeRole();
+		const teamMember = await getTeamMember(role);
+		team.push(teamMember);
+		addTeamMember = await wantToAddEmployeeAsync();
+	}
+	return team;
+}
+
+// END - Questions
+
+// START - Validations
 
 function validateNonEmpty(input) {
 	return !input || input === "" ? "Invalid input" : true;
@@ -118,31 +171,8 @@ function validateEmail(input) {
 	return !input || !re.test(input) ? "Invalid email" : true;
 }
 
-function promptManagerAsync() {
-	return inquirer.prompt(managerQuestions);
-}
-
-function promptTeamMembersAsync() {
-	return inquirer.prompt(teamMembersQuestions);
-}
-
-function promptEngineerAsync() {
-	return inquirer.prompt(promptEngineer);
-}
-
-function promptInternAsync() {
-	return inquirer.prompt(promptIntern);
-}
-
-function addMore() {
-	return promptTeamMembersAsync;
-}
+// END - Validations
 
 module.exports = {
-	promptManagerAsync: promptManagerAsync,
-	promptTeamMembersAsync: promptTeamMembersAsync,
-	promptEngineerAsync: promptEngineerAsync,
-	promptInternAsync: promptInternAsync,
-	displayNext: displayNext,
-	addMore: addMore,
+	getTeam: getTeam,
 };
