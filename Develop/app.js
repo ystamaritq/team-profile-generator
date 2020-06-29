@@ -25,7 +25,7 @@ async function init() {
 		//write the file
 		writeOutputFile(outputPath, outputHtml);
 		//success message
-		successMessage();
+		successMessage(outputPath);
 	} catch (err) {
 		return console.log(err);
 	}
