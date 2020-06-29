@@ -1,8 +1,9 @@
 const path = require("path");
 const fs = require("fs");
+const { blue, green } = require("colors");
 
 const handleError = (err) => {
-	if (err) console.log("There was an error: " + err);
+	if (err) console.log("There was an error: ".red + err);
 };
 
 const validateOutputDir = (outputDir) => {
@@ -28,8 +29,8 @@ const instructionsMessage = () =>
 		*                                                                                        *
 		* Press ^C at any time to quit.                                                          *
 		****************************************************************************************** 
-
-		`
+		
+		`.white.bold
 	);
 
 const successMessage = () =>
@@ -37,10 +38,9 @@ const successMessage = () =>
 		`
 		
 Success! Your HTML markdown file have been generated on: ./team-profile-generator/Develop/output. 
-`
+`.cyan.bold
 	);
 
-successMessage();
 module.exports = {
 	validateOutputDir: validateOutputDir,
 	writeOutputFile: writeOutputFile,
