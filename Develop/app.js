@@ -1,6 +1,10 @@
 const path = require("path");
 const fs = require("fs");
-const { writeOutputFile, validateOutputDir } = require("./lib/utils");
+const {
+	writeOutputFile,
+	validateOutputDir,
+	instructionsMessage,
+} = require("./lib/utils");
 const render = require("./lib/htmlRenderer");
 const { getTeam } = require("./lib/prompts");
 
@@ -9,6 +13,8 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 async function init() {
 	try {
+		//instructions
+		instructionsMessage();
 		// array
 		const team = await getTeam();
 		const outputHtml = render(team);
