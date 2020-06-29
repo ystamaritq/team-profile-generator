@@ -16,7 +16,7 @@ const writeOutputFile = (outputPath, data) => {
 	fs.writeFile(outputPath, data, handleError);
 };
 
-const instructionsMessage = function () {
+const instructionsMessage = () =>
 	console.log(
 		`
 		******************************************************************************************
@@ -31,11 +31,20 @@ const instructionsMessage = function () {
 
 		`
 	);
-};
 
+const successMessage = () =>
+	console.log(
+		`
+		
+Success! Your HTML markdown file have been generated on: ./team-profile-generator/Develop/output. 
+`
+	);
+
+successMessage();
 module.exports = {
 	validateOutputDir: validateOutputDir,
 	writeOutputFile: writeOutputFile,
 	handleError: handleError,
 	instructionsMessage: instructionsMessage,
+	successMessage: successMessage,
 };
