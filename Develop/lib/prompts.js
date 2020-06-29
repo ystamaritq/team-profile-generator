@@ -45,7 +45,7 @@ const addEmployeeQuestions = [
 		type: "confirm",
 		prefix: "?".cyan.bold,
 		name: "addEmployee",
-		message: "want to add employee?:",
+		message: "Yes | No",
 		default: true,
 	},
 ];
@@ -54,7 +54,7 @@ const roleQuestions = [
 	{
 		type: "list",
 		prefix: "?".cyan.bold,
-		message: "Select the team member's role",
+		message: "Roles",
 		name: "role",
 		choices: ["Engineer", "Intern"],
 	},
@@ -88,9 +88,12 @@ async function getManagerAsync() {
 	const employeeAnswers = await inquirer.prompt(employeeQuestions);
 	const managerAnswers = await inquirer.prompt(managerQuestions);
 	return new Manager(
-		employeeAnswers.name,
+		employeeAnswers.name
+			.split(" ")
+			.map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+			.join(" "),
 		employeeAnswers.id,
-		employeeAnswers.email,
+		employeeAnswers.email.toLowerCase(),
 		managerAnswers.officeNumber
 	);
 }
@@ -100,10 +103,13 @@ async function getEngineerAsync() {
 	const employeeAnswers = await inquirer.prompt(employeeQuestions);
 	const engineerAnswers = await inquirer.prompt(engineerQuestions);
 	return new Engineer(
-		employeeAnswers.name,
+		employeeAnswers.name
+			.split(" ")
+			.map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+			.join(" "),
 		employeeAnswers.id,
-		employeeAnswers.email,
-		engineerAnswers.github
+		employeeAnswers.email.toLowerCase(),
+		engineerAnswers.github.toLowerCase()
 	);
 }
 
@@ -112,19 +118,28 @@ async function getInternAsync() {
 	const employeeAnswers = await inquirer.prompt(employeeQuestions);
 	const internAnswers = await inquirer.prompt(internQuestions);
 	return new Intern(
-		employeeAnswers.name,
+		employeeAnswers.name
+			.split(" ")
+			.map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+			.join(" "),
 		employeeAnswers.id,
-		employeeAnswers.email,
+		employeeAnswers.email.toLowerCase(),
 		internAnswers.school
+			.split(" ")
+			.map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+			.join(" ")
 	);
 }
 
 async function getEmployeeRole() {
+	console.log(` \nSelect the team member's role  \n`.cyan.bold.dim.italic);
 	const answers = await inquirer.prompt(roleQuestions);
 	return answers.role;
 }
 
 async function wantToAddEmployeeAsync() {
+	console.log(` \nDo you want to add an employee?  \n`.cyan.bold.dim.italic);
+
 	const answers = await inquirer.prompt(addEmployeeQuestions);
 	return answers.addEmployee;
 }
