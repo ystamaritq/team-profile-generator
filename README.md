@@ -100,6 +100,10 @@ Image that demonstrates all unit tests pass.
 ![Image](./Assets/imgs/2.png)
 ![Image](./Assets/imgs/3.png)
 
+##### Result webpage:
+
+![Image](./Assets/imgs/html.png)
+
 ---
 
 ## Licensing
