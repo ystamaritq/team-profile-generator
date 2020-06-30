@@ -25,7 +25,7 @@
 
 ## Description
 
-a software engineering team generator command line application (CLI). The application will prompt the user for information about the team manager and then information about the team members.
+A software engineering team generator command line application (CLI). The application will prompt the user for information about the team manager and then information about the team members.
 
 ---
 
