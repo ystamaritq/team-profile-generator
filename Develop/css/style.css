@@ -2,6 +2,26 @@
 	color: #14273e;
 }
 
-.custom-color-secondary {
+.custom-color-secondary,
+a {
 	color: #1e3a5c;
+}
+
+body {
+	background-color: lightgrey;
+}
+
+.footer-border {
+	border: solid #14273e 0.9px;
+}
+
+.footer {
+	text-align: center;
+	font-size: 15px;
+	color: #14273e;
+}
+
+.card:hover {
+	cursor: pointer;
+	box-shadow: 0 17px 18px 0 rgba(0, 0, 0, 0.2), 0 9px 20px 0 rgba(0, 0, 0, 0.19);
 }

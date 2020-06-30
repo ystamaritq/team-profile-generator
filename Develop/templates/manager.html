@@ -1,14 +1,19 @@
-<div class="card employee-card col-md-5 col-sm-12 col-lg-3 mr-2 mb-3 border-4 border-warning shadow-lg">
-    <div class="card-header bg-white border border-warning shadow-lg">
+<div class="card employee-card col-md-4 col-sm-12 col-lg-3 mr-2 mb-3 border-4 border-dark shadow-lg p-0">
+    <div class="card-header bg-white border border-dark">
         <h2 class="card-title font-weight-bold text-center custom-color-primary ">{{ name }}</h2>
         <h3 class="card-title text-center custom-color-secondary "><i class="fas fa-mug-hot mr-2"></i>{{ role }}</h3>
     </div>
-    <div class="card-body border border-warning shadow-lg">
-        <ul class="list-group border border-warning shadow-lg">
-            <li class="list-group-item font-weight-bold custom-color-primary ">ID: {{ id }}</li>
-            <li class="list-group-item font-weight-bold custom-color-primary ">Email: <a
-                    href="mailto:{{ email }}">{{ email }}</a></li>
-            <li class="list-group-item font-weight-bold custom-color-primary ">Office number: {{ officeNumber }}</li>
+    <div class="card-body border border-dark">
+        <ul class="list-group border border-dark">
+            <li class="list-group-item custom-color-secondary "><i class="fas fa-id-card custom-color-primary"></i>
+                <span class="font-weight-bold"> Id: </span>
+                {{ id }}
+            </li>
+            <li class="list-group-item custom-color-secondary "><i class="fas fa-at custom-color-primary"></i> <span
+                    class="font-weight-bold"> Email: </span> <a href="mailto:{{ email }}">{{ email }}</a></li>
+            <li class="list-group-item custom-color-secondary "><i
+                    class="fas fa-building custom-color-primary"></i><span class="font-weight-bold"> Office Number:
+                </span>{{ officeNumber }}</li>
         </ul>
     </div>
 </div>
