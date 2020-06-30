@@ -13,8 +13,10 @@
 - [User Stories](#user-stories)
 - [Installing / Getting Started](#inslalling-/-getting-started)
   - [MVP](#mvp)
+  - [Test](#test)
 - [Demo](#demo)
 - [Project Board](https://github.com/ystamaritq/team-profile-generator/projects "team-profile-generator")
+- [Github Link](https://github.com/ystamaritq/team-profile-generator "github-project-link")
 
 ---
 
@@ -77,6 +79,24 @@ Below is a summary of the key files for this project and their purpose:
 
 ---
 
+### Test
+
+![Image](./Assets/test.png)
+
+#### Demo
+
 [Table of Contents](#table-of-contents)
 
 ---
+
+## Licensing
+
+"The code in this project is licensed under MIT license."
+
+---
+
+**developed with love by **@ystamaritq\*\*\*\*
+
+```
+
+```
