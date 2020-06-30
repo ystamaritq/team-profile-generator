@@ -1,4 +1,7 @@
-# Team Profile Generator
+<div align="center">
+  <br>
+  <img src="./Assets/imgs/logo.png" alt="team-profile-generator logo" width="350">
+  <br>
 
 ![GitHub top language](https://img.shields.io/github/languages/top/ystamaritq/team-profile-generator)
 [![GitHub license](https://img.shields.io/github/license/ystamaritq/team-profile-generator)](https://github.com/ystamaritq/team-profile-generator/blob/master/LICENSE)
@@ -17,8 +20,8 @@
 - [Description](#description)
 - [User Stories](#user-stories)
 - [Installing / Getting Started](#inslalling-/-getting-started)
-  - [MVP](#mvp)
-  - [Testing](#testing)
+- [MVP](#mvp)
+- [Testing](#testing)
 - [Demo](#demo)
 - [Project Board](https://github.com/ystamaritq/team-profile-generator/projects "team-profile-generator")
 - [Github Link](https://github.com/ystamaritq/team-profile-generator "github-project-link")
@@ -68,14 +71,30 @@ Below is a summary of the key files for this project and their purpose:
 
 ## MVP
 
-- Creating the Classes: `Employee`, `Manager`, `Engineer` ,`Intern`.
-- Testing these classes.
-- Generate a `team.html` page in the `output` directory, that displays a nicely formatted team roster. Each team member should display the following in no particular order:
+#### Creating the Classes: `Employee`, `Manager`, `Engineer` ,`Intern`.
 
-  - Name
-  - Role
-  - ID
-  - Role-specific property (school, link to gitHub profile, or office number)
+<details>
+<summary>Visual Studio Code</summary>
+<img src="./Assets/imgs/code1.png">
+<img src="./Assets/imgs/code2.png">
+<img src="./Assets/imgs/code3.png">
+<img src="./Assets/imgs/code4.png">
+<img src="./Assets/imgs/code5.png">
+<img src="./Assets/imgs/code6.png">
+</details>
+
+#### Generate a `team.html` page in the `output` directory, that displays a nicely formatted team roster. Each team member should display the following in no particular order:
+
+- Name
+- Role
+- ID
+- Role-specific property (school, link to gitHub profile, or office number)
+
+<details>
+<summary>Visual Studio Code</summary>
+<img src="./Assets/imgs/code5.png">
+<img src="./Assets/imgs/code6.png">
+</details>
 
 ---
 
@@ -85,17 +104,21 @@ Below is a summary of the key files for this project and their purpose:
 
 ![Image](./Assets/imgs/test.png)
 
+---
+
 ## Demo
 
 #### The following video demonstrates the application functionality:
 
 [Team Profile Generator Video _Click Me_](https://github.com/ystamaritq/team-profile-generator)
 
-##### The following images demonstrates the application functionality:
+#### The following images demonstrates the application functionality:
 
-![Image](./Assets/imgs/1.png)
-![Image](./Assets/imgs/2.png)
-![Image](./Assets/imgs/3.png)
+<details>
+<summary>Images</summary>
+<img src="./Assets/imgs/1.png">
+<img src="./Assets/imgs/2.png">
+</details>
 
 ##### Result webpage:
 
