@@ -2,24 +2,28 @@ const inquirer = require("inquirer");
 const Manager = require("./Manager");
 const Engineer = require("./Engineer");
 const Intern = require("./Intern");
+const colors = require("colors");
 
 // START - Questions
 
 const employeeQuestions = [
 	{
 		type: "input",
+		prefix: "?".cyan.bold,
 		message: "Enter employee's name: ",
 		name: "name",
 		validate: validateNonEmpty,
 	},
 	{
 		type: "input",
+		prefix: "?".cyan.bold,
 		name: "id",
 		message: "Enter employee's ID: ",
 		validate: validateNonEmpty,
 	},
 	{
 		type: "input",
+		prefix: "?".cyan.bold,
 		name: "email",
 		message: "Enter employee's email:",
 		validate: validateEmail,
@@ -29,6 +33,7 @@ const employeeQuestions = [
 const managerQuestions = [
 	{
 		type: "input",
+		prefix: "?".cyan.bold,
 		message: "Enter the manager's office number:",
 		name: "officeNumber",
 		validate: validateNonEmpty,
@@ -38,8 +43,9 @@ const managerQuestions = [
 const addEmployeeQuestions = [
 	{
 		type: "confirm",
+		prefix: "?".cyan.bold,
 		name: "addEmployee",
-		message: "want to add employee?:",
+		message: "Yes | No",
 		default: true,
 	},
 ];
@@ -47,7 +53,8 @@ const addEmployeeQuestions = [
 const roleQuestions = [
 	{
 		type: "list",
-		message: "Select the team member's role",
+		prefix: "?".cyan.bold,
+		message: "Roles",
 		name: "role",
 		choices: ["Engineer", "Intern"],
 	},
@@ -56,6 +63,7 @@ const roleQuestions = [
 const engineerQuestions = [
 	{
 		type: "input",
+		prefix: "?".cyan.bold,
 		message: "Enter your github username: ",
 		name: "github",
 	},
@@ -64,6 +72,7 @@ const engineerQuestions = [
 const internQuestions = [
 	{
 		type: "input",
+		prefix: "?".cyan.bold,
 		message: "Enter your school: ",
 		name: "school",
 	},
@@ -74,47 +83,63 @@ const internQuestions = [
 // START - Promts
 
 async function getManagerAsync() {
-	console.log("Enter Manager's Info");
+	console.log(` Enter Manager's Info  \n`.cyan.bold.dim.italic);
+
 	const employeeAnswers = await inquirer.prompt(employeeQuestions);
 	const managerAnswers = await inquirer.prompt(managerQuestions);
 	return new Manager(
-		employeeAnswers.name,
+		employeeAnswers.name
+			.split(" ")
+			.map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+			.join(" "),
 		employeeAnswers.id,
-		employeeAnswers.email,
+		employeeAnswers.email.toLowerCase(),
 		managerAnswers.officeNumber
 	);
 }
 
 async function getEngineerAsync() {
-	console.log("Enter Engineer's Info");
+	console.log(` \nEnter Engineer's Info \n`.cyan.bold.dim.italic);
 	const employeeAnswers = await inquirer.prompt(employeeQuestions);
 	const engineerAnswers = await inquirer.prompt(engineerQuestions);
 	return new Engineer(
-		employeeAnswers.name,
+		employeeAnswers.name
+			.split(" ")
+			.map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+			.join(" "),
 		employeeAnswers.id,
-		employeeAnswers.email,
-		engineerAnswers.github
+		employeeAnswers.email.toLowerCase(),
+		engineerAnswers.github.toLowerCase()
 	);
 }
 
 async function getInternAsync() {
-	console.log("Enter Interns's Info");
+	console.log(` \nEnter Interns's Info \n`.cyan.bold.dim.italic);
 	const employeeAnswers = await inquirer.prompt(employeeQuestions);
 	const internAnswers = await inquirer.prompt(internQuestions);
 	return new Intern(
-		employeeAnswers.name,
+		employeeAnswers.name
+			.split(" ")
+			.map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+			.join(" "),
 		employeeAnswers.id,
-		employeeAnswers.email,
+		employeeAnswers.email.toLowerCase(),
 		internAnswers.school
+			.split(" ")
+			.map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+			.join(" ")
 	);
 }
 
 async function getEmployeeRole() {
+	console.log(` \nSelect the team member's role  \n`.cyan.bold.dim.italic);
 	const answers = await inquirer.prompt(roleQuestions);
 	return answers.role;
 }
 
 async function wantToAddEmployeeAsync() {
+	console.log(` \nDo you want to add an employee?  \n`.cyan.bold.dim.italic);
+
 	const answers = await inquirer.prompt(addEmployeeQuestions);
 	return answers.addEmployee;
 }
