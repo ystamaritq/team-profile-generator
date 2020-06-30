@@ -1,5 +1,8 @@
 # Team Profile Generator
 
+![GitHub top language](https://img.shields.io/github/languages/top/ystamaritq/team-profile-generator)
+[![GitHub license](https://img.shields.io/github/license/ystamaritq/team-profile-generator)](https://github.com/ystamaritq/team-profile-generator/blob/master/LICENSE)
+
 > HTML webpage that displays summaries for each team member.
 > <br>
 
@@ -80,6 +83,8 @@ Below is a summary of the key files for this project and their purpose:
 ---
 
 ### Test
+
+Image that demonstrates all unit tests pass.
 
 ![Image](./Assets/imgs/test.png)
 
