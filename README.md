@@ -65,98 +65,15 @@ Below is a summary of the key files for this project and their purpose:
 
 - Creating the Classes: `Employee`, `Manager`, `Engineer` ,`Intern`.
 - The tests for these classes in the `tests` directory must all pass.
+- The project must generate a `team.html` page in the `output` directory, that displays a nicely formatted team roster. Each team member should display the following in no particular order:
 
-The first class is an `Employee` parent class with the following properties and
-methods:
+  - Name
 
-- name
-- id
-- email
-- getName()
-- getId()
-- getEmail()
-- getRole() // Returns 'Employee'
+  - Role
 
-The other three classes will extend `Employee`.
+  - ID
 
-In addition to `Employee`'s properties and methods, `Manager` will also have:
-
-- officeNumber
-
-- getRole() // Overridden to return 'Manager'
-
-In addition to `Employee`'s properties and methods, `Engineer` will also have:
-
-- github // GitHub username
-
-- getGithub()
-
-- getRole() // Overridden to return 'Engineer'
-
-In addition to `Employee`'s properties and methods, `Intern` will also have:
-
-- school
-
-- getSchool()
-
-- getRole() // Overridden to return 'Intern'
-
-### User input
-
-The project must prompt the user to build an engineering team. An engineering
-team consists of a manager, and any number of engineers and interns.
-
-### Roster output
-
-The project must generate a `team.html` page in the `output` directory, that displays a nicely formatted team roster. Each team member should display the following in no particular order:
-
-- Name
-
-- Role
-
-- ID
-
-- Role-specific property (School, link to GitHub profile, or office number)
-
----
-
-#### Demo
-
-<img src ="assets\images\readme-imgs\travel-board-gif-3.gif" width = "800px">
-
-<div align="center">
-
-[travel-board](https://cb-group-6-project-1.github.io/travel-board/ "Try it out!") </div>
-
----
-
-## Tech Stack
-
-| Tools                   | Tech        |
-| ----------------------- | ----------- |
-| V.S.Code                | HTML        |
-| Postman                 | CSS         |
-| draw\.io                | Javascript  |
-| Browser Developer Tools | AJAX        |
-|                         | Jquery      |
-|                         | Pure.css    |
-|                         | Moment.js   |
-|                         | Materialize |
-
-#### APIs
-
-- [Mapbox](https://docs.mapbox.com/api/)
-- [PixaBay](https://pixabay.com/api/docs/)
-- [Weatherapi.com](https://www.weatherapi.com/)
-
----
-
-## Team Members
-
-- [Yadira Tamarit](https://github.com/ystamaritq)
-- [Stephen Guzman](https://github.com/steveo9219)
-- [William Hanna](https://github.com/wrhcodecamp)
-- [Joshua Martinez](https://github.com/JDMartinez1531)
+  - Role-specific property (School, link to GitHub profile, or office number)
 
 ---
 
